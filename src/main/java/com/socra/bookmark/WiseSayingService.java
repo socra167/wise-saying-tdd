@@ -10,13 +10,17 @@ import java.util.NoSuchElementException;
 public class WiseSayingService {
 
     WiseSayingRepository wiseSayingRepository;
+    Long idCounter;
 
     public WiseSayingService() {
         wiseSayingRepository = new WiseSayingRepositoryImpl();
+        idCounter = 1L;
     }
 
-    public void addWiseSaying(WiseSaying wiseSaying) {
+    public WiseSaying addWiseSaying(WiseSaying wiseSaying) {
+        wiseSaying.setId(new WiseSayingId(idCounter++));
         wiseSayingRepository.save(wiseSaying);
+        return wiseSaying;
     }
 
     public WiseSaying findWiseSayingById(WiseSayingId id) {
