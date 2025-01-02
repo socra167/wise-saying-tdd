@@ -1,7 +1,7 @@
 package service;
 
 import com.socra.bookmark.entity.Author;
-import com.socra.bookmark.entity.ID;
+import com.socra.bookmark.entity.WiseSayingId;
 import com.socra.bookmark.entity.WiseSaying;
 import com.socra.bookmark.WiseSayingService;
 import org.junit.jupiter.api.BeforeEach;
@@ -25,12 +25,12 @@ class WiseSayingServiceTest {
     @DisplayName("명언을 등록하고 ID로 조회할 수 있다")
     void add_wisesaying() {
         WiseSaying wiseSaying = WiseSaying.builder()
-                .id(new ID(1L))
+                .id(new WiseSayingId(1L))
                 .author(new Author("작자미상"))
                 .content("현재를 사랑하라.")
                 .build();
         wiseSayingService.addWiseSaying(wiseSaying);
-        assertThat(wiseSayingService.findWiseSayingById(new ID(1L)))
+        assertThat(wiseSayingService.findWiseSayingById(new WiseSayingId(1L)))
                 .usingRecursiveComparison()
                 .isEqualTo(wiseSaying);
     }
@@ -39,7 +39,7 @@ class WiseSayingServiceTest {
     @DisplayName("존재하지 않는 ID로 명언을 조회할 수 없다")
     void read_invalid_wisesaying_id() {
         assertThatThrownBy(() -> {
-            wiseSayingService.findWiseSayingById(new ID(99999L));
+            wiseSayingService.findWiseSayingById(new WiseSayingId(99999L));
         }).isInstanceOf(NoSuchElementException.class)
                 .hasMessage("존재하지 않는 ID의 명언을 조회했습니다");
     }
