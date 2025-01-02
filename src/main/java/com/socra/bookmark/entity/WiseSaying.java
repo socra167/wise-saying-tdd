@@ -2,12 +2,12 @@ package com.socra.bookmark.entity;
 
 public class WiseSaying {
 
-    private WiseSayingId id;
+    private WiseSayingId wiseSayingId;
     private Author author;
     private String content;
 
     private WiseSaying(Builder builder) {
-        this.id = builder.getId();
+        this.wiseSayingId = builder.getId();
         this.author = builder.getAuthor();
         this.content = builder.getContent();
     }
@@ -21,7 +21,7 @@ public class WiseSaying {
         private Author author;
         private String content;
 
-        public Builder id(WiseSayingId id) {
+        public Builder wiseSayingId(WiseSayingId id) {
             this.id = id;
             return this;
         }
@@ -53,12 +53,12 @@ public class WiseSaying {
         }
     }
 
-    public WiseSayingId getId() {
-        return id;
+    public Long getWiseSayingId() {
+        return wiseSayingId.getId();
     }
 
-    public WiseSaying setId(WiseSayingId id) {
-        this.id = id;
+    public WiseSaying setWiseSayingId(WiseSayingId wiseSayingId) {
+        this.wiseSayingId = wiseSayingId;
         return this;
     }
 
